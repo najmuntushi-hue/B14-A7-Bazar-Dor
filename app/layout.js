@@ -2,6 +2,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
+import Footer from "@/components/Footer";
 import { getCategories } from "@/lib/api";
 
 export const metadata = {
@@ -21,6 +22,7 @@ export default async function RootLayout({ children }) {
         <Navbar categories={categories} />
         <PriceTicker />
         <main className="flex-1">{children}</main>
+        <Footer />
         <Toaster position="top-center" />
       </body>
     </html>
