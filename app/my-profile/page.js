@@ -1,63 +1,52 @@
-import Hero from "@/components/Hero";
-import ProductCard from "@/components/ProductCard";
-import { getProducts } from "@/lib/api";
+"use client";
+import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
-function Section({ title, subtitle, id, products }) {
-  return (
-    <section id={id} className="max-w-6xl mx-auto px-4 pt-10 scroll-mt-40">
-      <h2 className="text-2xl font-bold">{title}</h2>
-      {subtitle && <p className="text-base-content/60 mt-1">{subtitle}</p>}
-      {products.length ? (
-        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-      ) : (
-        <p className="mt-5 text-base-content/60">কোনো পণ্য পাওয়া যায়নি।</p>
-      )}
-    </section>
-  );
-}
+export default function MyProfilePage() {
+  const { data: session, isPending } = authClient.useSession();
 
-export default async function Home() {
-  let products = [];
-  let failed = false;
-  try {
-    products = await getProducts();
-  } catch {
-    failed = true;
-  }
-
-  if (failed) {
+  if (isPending) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-20 text-center">
-        <p className="text-xl">ডেটা লোড করা যায়নি। একটু পরে আবার চেষ্টা করুন।</p>
+      <div className="max-w-2xl mx-auto px-4 py-10 space-y-4">
+        <div className="skeleton h-8 w-48" />
+        <div className="skeleton h-40 w-full rounded-2xl" />
       </div>
     );
   }
 
-  const risers = products
-    .filter((p) => p.change > 0)
-    .sort((a, b) => b.change - a.change)
-    .slice(0, 6);
+  const user = session?.user;
+  if (!user) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-16 text-center">
+        <p className="mb-4">প্রোফাইল দেখতে সাইন ইন করুন।</p>
+        <Link href="/signin" className="btn btn-primary rounded-full">সাইন ইন</Link>
+      </div>
+    );
+  }
 
-  const fallers = products
-    .filter((p) => p.change < 0)
-    .sort((a, b) => a.change - b.change)
-    .slice(0, 6);
+  const avatar =
+    user.image ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=16a34a&color=fff&size=128`;
 
   return (
-    <>
-      <Hero />
-      <Section title="আজ দাম বেড়েছে ▲" products={risers} />
-      <Section title="আজ দাম কমেছে ▼" products={fallers} />
-      <Section
-        id="সব-পণ্য"
-        title="সব পণ্য"
-        subtitle="সব পণ্যের আজকের দাম ও আগের দিনের তুলনায় পরিবর্তন"
-        products={products}
-      />
-    </>
+    <div className="max-w-2xl mx-auto px-4 py-10">
+      <h1 className="text-2xl font-bold mb-1">আমার প্রোফাইল</h1>
+      <p className="text-base-content/60 mb-6">আপনার অ্যাকাউন্টের তথ্য</p>
+
+      <div className="bg-base-100 border border-base-300 rounded-2xl p-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <img src={avatar} alt={user.name} className="w-20 h-20 rounded-full object-cover" />
+            <div>
+              <h2 className="text-xl font-bold">{user.name}</h2>
+              <p className="text-base-content/60">{user.email}</p>
+            </div>
+          </div>
+          <Link href="/my-profile/update" className="btn btn-primary btn-outline rounded-full">
+            তথ্য আপডেট করুন
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }

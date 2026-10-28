@@ -31,8 +31,10 @@ export default function Navbar({ categories = [] }) {
   };
 
   const linkClass = (active) =>
-    `btn btn-sm rounded-full whitespace-nowrap ${
-      active ? "btn-primary" : "btn-ghost"
+    `btn btn-xs sm:btn-sm rounded-full whitespace-nowrap font-medium ${
+      active
+        ? "btn-primary"
+        : "btn-ghost text-base-content/70 hover:bg-base-200"
     }`;
 
   return (
@@ -47,7 +49,7 @@ export default function Navbar({ categories = [] }) {
         </Link>
 
         {/* Category links (desktop e majhkhane, mobile e niche scroll) */}
-        <nav className="order-3 w-full lg:order-none lg:w-auto lg:flex-1 lg:justify-center flex gap-2 overflow-x-auto no-scrollbar">
+        <nav className="order-3 w-full lg:order-none lg:w-auto lg:flex-1 lg:justify-center flex gap-1.5 overflow-x-auto no-scrollbar">
           <Link href="/" className={linkClass(pathname === "/")}>
             🏠 হোম
           </Link>
@@ -74,25 +76,30 @@ export default function Navbar({ categories = [] }) {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="btn btn-ghost rounded-full px-2 gap-2"
               >
-                <div className="w-9 rounded-full">
-                  <img
-                    alt="profile"
-                    src={
-                      session.user.image ||
-                      `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                        session.user.name
-                      )}`
-                    }
-                  />
+                <div className="avatar">
+                  <div className="w-8 rounded-full">
+                    <img
+                      alt="profile"
+                      src={
+                        session.user.image ||
+                        `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                          session.user.name
+                        )}&background=16a34a&color=fff`
+                      }
+                    />
+                  </div>
                 </div>
+                <span className="hidden sm:inline text-sm max-w-28 truncate">
+                  {session.user.name}
+                </span>
               </div>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content bg-base-100 rounded-box z-50 mt-2 w-52 p-2 shadow"
+                className="menu dropdown-content bg-base-100 rounded-box z-50 mt-2 w-52 p-2 shadow border border-base-300"
               >
-                <li className="menu-title">{session.user.name}</li>
+                <li className="menu-title truncate">{session.user.name}</li>
                 <li>
                   <Link href="/my-profile">আমার প্রোফাইল</Link>
                 </li>

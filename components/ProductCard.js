@@ -5,13 +5,13 @@ export function ChangeBadge({ change }) {
   const up = change > 0;
   const down = change < 0;
   const cls = up
-    ? "bg-green-100 text-green-700"
+    ? "bg-green-50 text-green-700"
     : down
-    ? "bg-red-100 text-red-700"
-    : "bg-gray-100 text-gray-600";
+    ? "bg-red-50 text-red-600"
+    : "bg-gray-100 text-gray-500";
   const icon = up ? "▲" : down ? "▼" : "—";
   return (
-    <span className={`text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap ${cls}`}>
+    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${cls}`}>
       {icon} {toBn(Math.abs(change).toFixed(1))}%
     </span>
   );
@@ -21,22 +21,22 @@ export default function ProductCard({ product }) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="block bg-base-100 rounded-xl border border-base-300 p-4 hover:shadow-md hover:-translate-y-0.5 transition"
+      className="block bg-base-100 rounded-lg border border-base-300 p-3 hover:shadow-md hover:border-primary/40 transition"
     >
-      <div className="flex items-start gap-3">
-        <div className="w-12 h-12 shrink-0 rounded-lg bg-base-200 flex items-center justify-center text-3xl">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 shrink-0 rounded-full bg-base-200 flex items-center justify-center text-2xl">
           {product.emoji}
         </div>
         <div className="min-w-0">
-          <h3 className="font-semibold truncate">{product.name}</h3>
-          <p className="text-sm text-base-content/60">{product.unit}</p>
+          <h3 className="text-sm font-semibold truncate">{product.name}</h3>
+          <p className="text-xs text-base-content/60">{product.unit}</p>
         </div>
       </div>
 
-      <div className="mt-4 flex items-end justify-between gap-2">
+      <div className="mt-3 pt-3 border-t border-base-300 flex items-end justify-between gap-2">
         <div>
-          <p className="text-xs text-base-content/60">আজকের দাম</p>
-          <p className="text-lg font-bold">{formatPrice(product.price)} টাকা</p>
+          <p className="text-[11px] text-base-content/60">আজকের দাম</p>
+          <p className="text-base font-bold">{formatPrice(product.price)} টাকা</p>
         </div>
         <ChangeBadge change={product.change} />
       </div>
