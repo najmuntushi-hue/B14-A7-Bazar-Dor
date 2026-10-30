@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর | BazarDor
 
-## Getting Started
+প্রয়োজনীয় পণ্যের দাম এক নজরে। চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার সর্বশেষ বাজারদর, দামের ওঠানামা এবং বিভিন্ন বাজারের তুলনামূলক দাম দেখার একটি আধুনিক ওয়েব অ্যাপ।
 
-First, run the development server:
+🔗 **Live Link:** LIVE_LINK_HERE
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📌 Short Description
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+BazarDor একটি Next.js ভিত্তিক বাজারদর ট্র্যাকার। ব্যবহারকারী আজকের দাম, আগের দিনের তুলনায় দাম বাড়া-কমা এবং ঢাকা, চট্টগ্রাম, রাজশাহী, ময়মনসিংহ, খুলনা ও সিলেট বিভাগের বিভিন্ন বাজারের সর্বনিম্ন, সর্বোচ্চ ও গড় দাম দেখতে পারেন। পণ্যের বিস্তারিত পেজ দেখতে লগইন করতে হয়।
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Technology | Purpose |
+|---|---|
+| Next.js (App Router) | UI, routing ও server rendering |
+| JavaScript (React) | Component ভিত্তিক UI |
+| Tailwind CSS | Styling ও responsive design |
+| DaisyUI | UI component library |
+| Better Auth | Email/Password, Google ও GitHub authentication |
+| MongoDB | User ও session ডেটা সংরক্ষণ |
+| react-hot-toast | Toast notification |
+| Vercel | Deployment |
 
-## Learn More
+## ✨ Key Features
 
-To learn more about Next.js, take a look at the following resources:
+1. **Live Price Ticker:** নেভবারের নিচে অসীম স্ক্রলিং মার্কি, যেখানে ইমোজি, পণ্যের নাম, বাংলা সংখ্যায় দাম ও ▲/▼ পরিবর্তনের হার দেখা যায়।
+2. **দাম বাড়া-কমার সেকশন:** হোম পেজে সবচেয়ে বেশি দাম বাড়া ও কমা শীর্ষ ৬টি পণ্য এবং সব পণ্যের রেসপন্সিভ কার্ড গ্রিড।
+3. **Category Page ও Sorting:** ক্যাটাগরি অনুযায়ী পণ্য, স্কেলেটন লোডিং, এবং বাংলা সংখ্যা সঠিকভাবে হ্যান্ডেল করে দাম অনুযায়ী সাজানোর (কম থেকে বেশি / বেশি থেকে কম) সুবিধা।
+4. **Protected Product Details:** লগইন ছাড়া ঢোকা যায় না। বিস্তারিত পেজে সর্বনিম্ন, সর্বোচ্চ ও গড় দাম এবং বিভাগভিত্তিক বাজারের দামের টেবিল।
+5. **Authentication ও Profile:** Better Auth দিয়ে Email/Password, Google ও GitHub লগইন, toast নোটিফিকেশন, এবং প্রোফাইল পেজ থেকে নাম আপডেট করার সুবিধা।
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. রিপোজিটরি ক্লোন করুন এবং `npm install` চালান
+2. `.env.local` ফাইলে `MONGODB_URI`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `NEXT_PUBLIC_API_URL`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` দিন
+3. `npm run dev` চালান এবং `http://localhost:3000` খুলুন
 
-## Deploy on Vercel
+## 📡 API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`https://openapi.programming-hero.com/api/bazardor`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/products`, `/products?category=chal`, `/categories`
