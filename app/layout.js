@@ -8,6 +8,7 @@ import { getCategories } from "@/lib/api";
 export const metadata = {
   title: "বাজার দর | BazarDor",
   description: "প্রয়োজনীয় পণ্যের দাম এক নজরে।",
+  icons: { icon: "/logo-icon.png" },
 };
 
 export default async function RootLayout({ children }) {
@@ -17,8 +18,8 @@ export default async function RootLayout({ children }) {
   } catch {}
 
   return (
-    <html lang="bn">
-      <body className="min-h-screen flex flex-col bg-base-200">
+    <html lang="bn" data-scroll-behavior="smooth">
+      <body className="min-h-screen flex flex-col bg-base-100">
         <Navbar categories={categories} />
         <PriceTicker />
         <main className="flex-1">{children}</main>
