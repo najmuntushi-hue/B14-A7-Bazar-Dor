@@ -25,41 +25,37 @@ export default function Hero({ productCount = 0, marketCount = 0, divisionCount 
 
   return (
     <section className="max-w-6xl mx-auto px-4 pt-8">
-      <div className="rounded-3xl border border-base-300 bg-base-200/60 p-6 md:p-10 grid lg:grid-cols-[1.5fr_1fr_0.8fr] gap-6 items-center">
-        {/* left: text */}
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-green-100 text-primary text-sm font-medium px-4 py-2">
-            📅 {date}
-          </span>
-          <h1 className="mt-5 text-4xl md:text-5xl font-extrabold leading-tight">
-            আজকের বাজারের দাম <span className="text-primary">এক নজরে</span>
-          </h1>
-          <p className="mt-4 text-base-content/70 max-w-xl">
-            চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার সর্বশেষ বাজারদর জানুন এক
-            জায়গায়। দামের পরিবর্তন দেখুন সহজেই।
-          </p>
-          <a href="#সব-পণ্য" className="btn btn-primary rounded-md mt-6">
-            সব পণ্য দেখুন →
-          </a>
-          <p className="mt-3 text-xs text-base-content/60">
-            সহজেই জানুন নিত্যপণ্যের বাজারদর
-          </p>
+      <div className="rounded-3xl border border-base-300 bg-base-200/60 p-6 md:p-10">
+        <div className="grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-green-100 text-primary text-sm font-medium px-4 py-2">
+              📅 {date}
+            </span>
+            <h1 className="mt-5 text-4xl md:text-5xl font-extrabold leading-tight">
+              আজকের বাজারের দাম <span className="text-primary">এক নজরে</span>
+            </h1>
+            <p className="mt-4 text-base-content/70 max-w-xl">
+              চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার সর্বশেষ বাজারদর জানুন এক
+              জায়গায়। দামের পরিবর্তন দেখুন সহজেই।
+            </p>
+            <a href="#সব-পণ্য" className="btn btn-primary rounded-md mt-6">
+              সব পণ্য দেখুন →
+            </a>
+          </div>
+
+          <div className="rounded-3xl bg-base-100 p-6 flex items-center justify-center">
+            <Image
+              src="/bazar-hero.png"
+              alt="বাজারের ঝুড়ি"
+              width={420}
+              height={340}
+              className="w-full max-w-64 h-auto object-contain"
+              priority
+            />
+          </div>
         </div>
 
-        {/* middle: image */}
-        <div className="rounded-3xl bg-base-100 p-6 flex items-center justify-center">
-          <Image
-            src="/bazar-hero.png"
-            alt="বাজারের ঝুড়ি"
-            width={420}
-            height={340}
-            className="w-full max-w-60 h-auto object-contain"
-            priority
-          />
-        </div>
-
-        {/* right: stats */}
-        <div className="grid gap-4">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Stat icon="🛒" label="পণ্য" value={toBn(productCount)} note="টি নিত্যদিনের পণ্য" />
           <Stat icon="🏪" label="বাজার" value={toBn(marketCount)} note="টি বাজার অন্তর্ভুক্ত" />
           <Stat icon="🗂️" label="বিভাগ" value={toBn(divisionCount)} note="টি বিভাগের তথ্য" />
